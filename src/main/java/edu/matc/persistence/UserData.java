@@ -16,11 +16,31 @@ import java.util.List;
  */
 public class UserData {
 
+    /**
+     * Gets all users.
+     *
+     * @return the all users
+     */
     public List<User> getAllUsers() {
+        String sql = "SELECT * FROM user";
+        return executeQuery(sql);
+    }
+
+    /**
+     * Gets users by last name.
+     *
+     * @param lastName the last name
+     * @return the users by last name
+     */
+    public List<User> getUsersByLastName(String lastName) {
+        String sql = "SELECT * FROM user WHERE last_name like '%" + lastName + "%'";
+        return executeQuery(sql);
+    }
+
+    private List<User> executeQuery(String sql) {
         List<User> users = new ArrayList<User>();
         Database database = Database.getInstance();
         Connection connection = null;
-        String sql = "SELECT * FROM users";
 
         try {
             database.connect();
@@ -40,12 +60,12 @@ public class UserData {
         return users;
     }
 
-    //TODO add a method or methods to return a users based on search criteria
-
     private User createUserFromResults(ResultSet results) throws SQLException {
         User user = new User();
         user.setLastName(results.getString("last_name"));
-        // TODO map the remaining fields
+        user.setFirstName(results.getString("first_name"));
+        user.setUserName(results.getString("user_name"));
+        user.setDateofBirth(results.getDate("date_of_birth").toLocalDate());
         return user;
     }
 

@@ -13,6 +13,8 @@ import java.io.IOException;
 /**
  * A simple servlet to welcome the user.
  * @author pwaite
+ * Modified by
+ * @plarson 1/30/22
  */
 
 @WebServlet(
@@ -24,7 +26,11 @@ public class SearchUser extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         UserData userData = new UserData();
-        req.setAttribute("users", userData.getAllUsers());
+        if (req.getParameter("submit").equals("search")) {
+            req.setAttribute("users", userData.getUsersByLastName(req.getParameter("searchTerm")));
+        } else {
+            req.setAttribute("users", userData.getAllUsers());
+        }
         RequestDispatcher dispatcher = req.getRequestDispatcher("/results.jsp");
         dispatcher.forward(req, resp);
     }

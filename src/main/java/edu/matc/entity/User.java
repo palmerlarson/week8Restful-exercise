@@ -1,7 +1,9 @@
 package edu.matc.entity;
 
-// TODO Add instance variable for the date of birth
-// TODO Add a calculation for the user's age. Age should not be stored, it should be calculated only.
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 /**
  * A class to represent a user.
@@ -13,6 +15,7 @@ public class User {
     private String lastName;
     private String userName;
     private int id;
+    private LocalDate dateofBirth;
 
 
     /**
@@ -109,14 +112,42 @@ public class User {
         this.id = id;
     }
 
+    /**
+     * Gets dateof birth.
+     *
+     * @return the dateof birth
+     */
+    public LocalDate getDateofBirth() {
+        return dateofBirth;
+    }
+
+    /**
+     * Sets dateof birth.
+     *
+     * @param dateofBirth the dateof birth
+     */
+    public void setDateofBirth(LocalDate dateofBirth) {
+        this.dateofBirth = dateofBirth;
+    }
+
+    /**
+     * Gets age.
+     *
+     * @return the age
+     */
+    public int getAge() {
+        return (int)ChronoUnit.YEARS.between(dateofBirth, LocalDate.now());
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
+                ", id=" + id +
+                ", dateofBirth=" + dateofBirth +
+                ", age=" + getAge() +
                 '}';
     }
-
-
 }
