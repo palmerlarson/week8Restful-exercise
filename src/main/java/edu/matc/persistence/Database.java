@@ -9,6 +9,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Provides access to the database
  * Created on 8/31/16.
@@ -18,6 +21,8 @@ import java.util.Properties;
  */
 
 public class Database implements PropertiesLoaderInterface {
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     // create an object of the class Database
     private static Database instance = new Database();
@@ -62,7 +67,7 @@ public class Database implements PropertiesLoaderInterface {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("Cannot close connection" + e);
+                logger.error("Cannot close connection" + e);
             }
         }
 
@@ -98,9 +103,9 @@ public class Database implements PropertiesLoaderInterface {
             }
 
         } catch (SQLException se) {
-            System.out.println("SQL Exception" + se);
+            logger.error("SQL Exception" + se);
         } catch (Exception e) {
-            System.out.println("Exception" + e);
+            logger.error("Exception" + e);
         } finally {
             disconnect();
         }

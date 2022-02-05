@@ -1,0 +1,4 @@
+[INFO ] 2022-02-05 12:17:20.028 [http-nio-8080-exec-4] UserData - Here's the select sql SELECT * FROM user
+[ERROR] 2022-02-05 12:17:20.037 [http-nio-8080-exec-4] UserData - test
+[INFO ] 2022-02-05 12:22:10.893 [http-nio-8080-exec-4] UserData - Here's the select sql SELECT * FROM user
+[ERROR] 2022-02-05 12:22:10.901 [http-nio-8080-exec-4] UserData - test

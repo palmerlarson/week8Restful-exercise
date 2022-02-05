@@ -1,6 +1,8 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,6 +18,8 @@ import java.util.List;
  */
 public class UserData {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
+
     /**
      * Gets all users.
      *
@@ -23,6 +27,8 @@ public class UserData {
      */
     public List<User> getAllUsers() {
         String sql = "SELECT * FROM user";
+        logger.info("Here's the select sql " + sql);
+        logger.error("test");
         return executeQuery(sql);
     }
 
@@ -52,10 +58,10 @@ public class UserData {
                 users.add(employee);
             }
             database.disconnect();
-        } catch (SQLException e) {
-            System.out.println("SearchUser.getAllUsers()...SQL Exception: " + e);
+        } catch (SQLException sqle) {
+            logger.error("SearchUser.getAllUsers()...SQL Exception: ", sqle);
         } catch (Exception e) {
-            System.out.println("SearchUser.getAllUsers()...Exception: " + e);
+            logger.error("SearchUser.getAllUsers()...Exception: ", e);
         }
         return users;
     }
