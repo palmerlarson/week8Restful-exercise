@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * The type Nationalizedao.
  */
-public class Nationalizedao {
+public class NationalizeDao {
 
     private String userName;
 
@@ -44,7 +44,7 @@ public class Nationalizedao {
     /**
      * Instantiates a new Nationalizedao.
      */
-    public Nationalizedao() {
+    public NationalizeDao() {
 
     }
 

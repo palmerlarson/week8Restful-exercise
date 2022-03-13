@@ -17,14 +17,14 @@ class NationalizedaoTest {
     /**
      * The Dao.
      */
-    Nationalizedao dao;
+    NationalizeDao dao;
 
     /**
      * Sets .
      */
     @BeforeEach
     void setup() {
-        dao = new Nationalizedao();
+        dao = new NationalizeDao();
     }
 
     /**
@@ -32,7 +32,6 @@ class NationalizedaoTest {
      */
     @Test
     void getName() {
-        dao = new Nationalizedao();
         dao.setName("michael");
         assertEquals("michael", dao.getNation().getName());
     }
@@ -42,8 +41,6 @@ class NationalizedaoTest {
      */
     @Test
     void setName() {
-        dao = new Nationalizedao();
-
         dao.setName("tom");
         assertEquals("tom", dao.getName());
         assertEquals(dao.getName(), dao.getNation().getName());
@@ -54,7 +51,6 @@ class NationalizedaoTest {
      */
     @Test
     void getCountry() {
-        dao = new Nationalizedao();
         List<CountryItem> countryOne;
         List<CountryItem> countryTwo;
         dao.setName("bill");
@@ -69,7 +65,6 @@ class NationalizedaoTest {
      */
     @Test
     void output() {
-        dao = new Nationalizedao();
         dao.setName("Palmer");
         assertTrue(true, dao.getNation().toString());
     }
